@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compressify - Your all-in-one solution for image and PDF optimization. Convert, compress, and enhance files with ease.">
+    <title>Compressify - Image & PDF Optimization Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #50E3C2;
+            --dark-color: #2D3748;
+            --light-color: #F7FAFC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+        }
+
+        .tool-grid {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .featured-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .featured-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem 0;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 6rem 1rem 2rem;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Compressify</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#tools" class="nav-link">Tools</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Optimize Your Images & PDFs in Seconds</h1>
+        <p>Free online tools for all your file optimization needs</p>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search for tools...">
+            <i class="fas fa-search"></i>
+        </div>
+    </section>
+
+    <section class="featured-tools">
+        <div class="featured-card">
+    <i class="fas fa-file-image tool-icon"></i>
+    <h3>Image Compressor</h3>
+    <p>Compress JPG, PNG, WEBP images without quality loss</p>
+    <a href="/tools/img.compress.html" class="cta-button">Compress Now</a>
+</div>
+
+        <div class="featured-card">
+            <i class="fas fa-file-pdf tool-icon"></i>
+            <h3>PDF Compressor</h3>
+            <p>Reduce PDF file size while maintaining quality</p>
+            <a href="#" class="cta-button">Compress PDF</a>
+        </div>
+    </section>
+
+    <section class="tool-grid">
+        <div class="tool-card">
+            <i class="fas fa-compress-alt tool-icon"></i>
+            <h4>Image Converter</h4>
+            <p>Convert between JPG, PNG, WEBP formats</p>
+        </div>
+        <div class="tool-card">
+            <i class="fas fa-file-archive tool-icon"></i>
+            <h4>PDF to Images</h4>
+            <p>Extract images from PDF files</p>
+        </div>
+        <div class="tool-card">
+            <i class="fas fa-crop-alt tool-icon"></i>
+            <h4>Image Resizer</h4>
+            <p>Resize images to specific dimensions</p>
+        </div>
+        <div class="tool-card">
+            <i class="fas fa-lock tool-icon"></i>
+            <h4>PDF Protector</h4>
+            <p>Add passwords to PDF files</p>
+        </div>
+        <div class="tool-card">
+            <i class="fas fa-file-excel tool-icon"></i>
+            <h4>PDF to Excel</h4>
+            <p>Convert PDF tables to Excel sheets</p>
+        </div>
+        <div class="tool-card">
+            <i class="fas fa-images tool-icon"></i>
+            <h4>Bulk Compressor</h4>
+            <p>Compress multiple files at once</p>
+        </div>
+    </section>
+
+    <section class="why-us" style="padding: 2rem; text-align: center;">
+        <h2>Why Choose Compressify?</h2>
+        <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 2rem;">
+            <div style="flex: 1; max-width: 300px;">
+                <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary-color);"></i>
+                <h3>Secure Processing</h3>
+                <p>All files are processed securely and deleted automatically</p>
+            </div>
+            <div style="flex: 1; max-width: 300px;">
+                <i class="fas fa-rocket" style="font-size: 2rem; color: var(--primary-color);"></i>
+                <h3>Instant Results</h3>
+                <p>Get optimized files in seconds with our powerful tools</p>
+            </div>
+            <div style="flex: 1; max-width: 300px;">
+                <i class="fas fa-heart" style="font-size: 2rem; color: var(--primary-color);"></i>
+                <h3>Free to Use</h3>
+                <p>All tools available completely free of charge</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2023 Compressify. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: white; margin: 0 1rem;">Privacy Policy</a>
+            <a href="#" style="color: white; margin: 0 1rem;">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add search functionality
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.tool-card').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
