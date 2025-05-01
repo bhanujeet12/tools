@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image compressor for JPEG, PNG, and WEBP formats. Reduce image size while maintaining quality with our responsive tool.">
+    <meta name="keywords" content="image compressor, optimize images, reduce file size, free image compression">
+   
+  <title>ImageCompress Pro - Online Image Optimization Tool jkhas </title>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous"></script>
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #50e3c2;
+            --background: #f5f7fb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: var(--background);
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .upload-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .drag-drop-area {
+            border: 2px dashed var(--primary-color);
+            padding: 3rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .drag-drop-area:hover {
+            background: rgba(74, 144, 226, 0.05);
+        }
+
+        .compression-controls {
+            margin: 2rem 0;
+        }
+
+        .quality-slider {
+            width: 100%;
+            margin: 1rem 0;
+            accent-color: var(--primary-color);
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 2rem 0;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .ad-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .button {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .preview-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ImageCompress Pro</h1>
+        <p>Optimize your images for web with intelligent compression</p>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="upload-section">
+                <div class="drag-drop-area" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                    <p>Drag & Drop images here or <span class="button" id="browseBtn">Browse Files</span></p>
+                    <input type="file" id="fileInput" hidden accept="image/*">
+                </div>
+
+                <div class="compression-controls">
+                    <label for="quality">Compression Level: <span id="qualityValue">80</span>%</label>
+                    <input type="range" id="quality" class="quality-slider" min="1" max="100" value="80">
+                    
+                    <button class="button" id="compressBtn">Compress Now</button>
+                </div>
+
+                <div class="preview-container">
+                    <div>
+                        <h3>Original Image</h3>
+                        <img id="originalPreview" class="preview-img">
+                    </div>
+                    <div>
+                        <h3>Compressed Image</h3>
+                        <img id="compressedPreview" class="preview-img">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ad Unit 1 -->
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-app-pub-7284848642544971/4019691931"
+                     data-ad-slot="xxxxxxxxxx"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <!-- Ad Unit 2 -->
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-app-pub-7284848642544971/4019691931"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+
+            <div class="compression-stats">
+                <h3>Compression Stats</h3>
+                <p>Original Size: <span id="originalSize">-</span></p>
+                <p>Compressed Size: <span id="compressedSize">-</span></p>
+                <p>Reduction: <span id="reduction">-</span></p>
+            </div>
+        </aside>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const dropZone = document.getElementById('dropZone');
+        const compressBtn = document.getElementById('compressBtn');
+        const qualitySlider = document.getElementById('quality');
+        const qualityValue = document.getElementById('qualityValue');
+
+        let currentFile = null;
+
+        // Event Listeners
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFileSelect);
+        qualitySlider.addEventListener('input', updateQuality);
+        compressBtn.addEventListener('click', compressImage);
+
+        // Drag & Drop handlers
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.backgroundColor = 'rgba(74, 144, 226, 0.1)';
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.backgroundColor = 'transparent';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.backgroundColor = 'transparent';
+            currentFile = e.dataTransfer.files[0];
+            previewImage(currentFile);
+        });
+
+        function handleFileSelect(e) {
+            currentFile = e.target.files[0];
+            previewImage(currentFile);
+        }
+
+        function updateQuality() {
+            qualityValue.textContent = qualitySlider.value;
+        }
+
+        function previewImage(file) {
+            if (!file.type.startsWith('image/')) {
+                Swal.fire('Error', 'Please select an image file', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('originalPreview').src = e.target.result;
+                document.getElementById('originalSize').textContent = formatBytes(file.size);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function compressImage() {
+            if (!currentFile) {
+                Swal.fire('Error', 'Please select an image first', 'error');
+                return;
+            }
+
+            const quality = qualitySlider.value / 100;
+            const img = new Image();
+            img.src = URL.createObjectURL(currentFile);
+
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                canvas.toBlob((blob) => {
+                    const compressedUrl = URL.createObjectURL(blob);
+                    document.getElementById('compressedPreview').src = compressedUrl;
+                    
+                    // Update stats
+                    document.getElementById('compressedSize').textContent = formatBytes(blob.size);
+                    const reduction = ((currentFile.size - blob.size) / currentFile.size * 100).toFixed(1);
+                    document.getElementById('reduction').textContent = `${reduction}%`;
+
+                    // Create download link
+                    const downloadBtn = document.createElement('a');
+                    downloadBtn.href = compressedUrl;
+                    downloadBtn.download = `compressed_${currentFile.name}`;
+                    downloadBtn.className = 'button';
+                    downloadBtn.textContent = 'Download Compressed Image';
+                    document.querySelector('.preview-container').appendChild(downloadBtn);
+                }, currentFile.type, quality);
+            };
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Initialize AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <noscript>
+        <p>Please enable JavaScript to use this image compression tool.</p>
+    </noscript>
+</body>
+</html>
